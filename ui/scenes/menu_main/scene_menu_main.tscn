@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckdasyv7lg1j8"]
+
+[ext_resource type="Script" path="res://ui/scenes/menu_main/btn_open_workbench_free_mode.gd" id="1_ye0kr"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="btn_open_workbench_free_mode" type="Button" parent="."]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 135.0
+offset_right = 950.0
+offset_bottom = 259.0
+text = "Open workbench (free mode)"
+script = ExtResource("1_ye0kr")
+
+[connection signal="pressed" from="btn_open_workbench_free_mode" to="btn_open_workbench_free_mode" method="_on_pressed"]
