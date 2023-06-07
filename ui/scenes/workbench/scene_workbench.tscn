@@ -17,6 +17,14 @@ func _ready():
 func _process(delta):
 	pass
 
+
+
+func _on_capacitors_id_pressed(id):
+	var child = load(\"res://ui/components/passive/capacitor.gd\").new() as Control
+	var container = self.find_parent(\"scene_workbench\").get_child(0) as VBoxContainer
+	var canvas = container.get_node(\"Panel\") as Panel
+	canvas.add_child(child)
+	child.set_position(Vector2(10, 10))
 "
 
 [sub_resource type="GDScript" id="GDScript_cbo1w"]
@@ -36,11 +44,15 @@ func _process(delta):
 [node name="scene_workbench" type="Node2D"]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 960.0
+offset_bottom = 474.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
 
 [node name="menu_bar" type="MenuBar" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
 script = SubResource("GDScript_xmrn0")
 
 [node name="File" type="PopupMenu" parent="VBoxContainer/menu_bar"]
@@ -58,3 +70,11 @@ script = ExtResource("3_8t6am")
 
 [node name="resistors" type="PopupMenu" parent="VBoxContainer/menu_bar/Add item/passive_components"]
 script = ExtResource("3_0hq6x")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="VBoxContainer"]
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="id_pressed" from="VBoxContainer/menu_bar/Add item/passive_components/capacitors" to="VBoxContainer/menu_bar" method="_on_capacitors_id_pressed"]
